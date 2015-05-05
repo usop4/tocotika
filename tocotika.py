@@ -11,10 +11,40 @@ import serial
 import time
 import sys
 
+LOW = 0
+HIGH = 1
+
 s = serial.Serial(
 	port='/dev/tty.usbserial-AHXMUX35',
 	baudrate=115200)
 
+def digitalWrite(pin,value):
+	cmd = ':788001'
+	if pin == 1:
+		if value == HIGH:
+			cmd = cmd + '0101'+'FFFFFFFFFFFFFFFF'
+		if value == LOW:
+			cmd = cmd + '0001'+'FFFFFFFFFFFFFFFF'			
+	if pin == 2:
+		if value == HIGH:
+			cmd = cmd + '0202'+'FFFFFFFFFFFFFFFF'
+		if value == LOW:
+			cmd = cmd + '0002'+'FFFFFFFFFFFFFFFF'
+	if pin == 3:
+		if value == HIGH:
+			cmd = cmd + '0404'+'FFFFFFFFFFFFFFFF'
+		if value == LOW:
+			cmd = cmd + '0004'+'FFFFFFFFFFFFFFFF'
+	if pin == 4:
+		if value == HIGH:
+			cmd = cmd + '0808'+'FFFFFFFFFFFFFFFF'
+		if value == LOW:
+			cmd = cmd + '0008'+'FFFFFFFFFFFFFFFF'
+	cmd = cmd + 'XX\r\n'
+	s.write(cmd)
+	time.sleep(0.1)
+	return cmd	
+	
 def analogWrite(pin,value):
 	cmd = ':7880010000'
 	if pin == 1:
@@ -41,6 +71,10 @@ if __name__ == '__main__':
 	while True:
 		
 		analogWrite(1,0)
+		digitalWrite(1,LOW)
 		wait(1)
+
 		analogWrite(1,1024)
+		digitalWrite(1,HIGH)
 		wait(1)
+
