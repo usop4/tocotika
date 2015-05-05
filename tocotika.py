@@ -15,7 +15,7 @@ s = serial.Serial(
 	port='/dev/tty.usbserial-AHXMUX35',
 	baudrate=115200)
 
-def digitalWrite(pin,value):
+def analogWrite(pin,value):
 	cmd = ':7880010000'
 	if pin == 1:
 		cmd = cmd + ''+hex4(value)+'FFFFFFFFFFFF'
@@ -40,7 +40,7 @@ if __name__ == '__main__':
 
 	while True:
 		
-		digitalWrite(1,0)
+		analogWrite(1,0)
 		wait(1)
-		digitalWrite(1,1024)
+		analogWrite(1,1024)
 		wait(1)
