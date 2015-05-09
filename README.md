@@ -5,7 +5,7 @@ TWE-Liteを操作してLEDを点滅させるためのPythonスクリプトです
 
 http://tocos-wireless.com/jp/products/TWE-Lite-USB/control.html
 
-ArduinoのanalogWrite関数と同じく
+ArduinoのdigitalWrite,analogWrite関数と同じく
 analogWrite(ピン番号、値０〜１０２４）
 で制御可能です。
 
