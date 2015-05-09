@@ -1,14 +1,14 @@
 import tocotika
 import time
 
-toko = tocotika.Toko('/dev/tty.usbserial-AHXMUX35')
+toco = tocotika.Toco('/dev/tty.usbserial-AHXMUX35')
 
 while True:
 
-	toko.analogWrite(1,0)
-	toko.digitalWrite(1,toko.LOW)
+	toco.analogWrite(1,0)
+	toco.digitalWrite(1,toco.LOW)
 	time.sleep(1)
 
-	toko.analogWrite(1,1024)
-	toko.digitalWrite(1,toko.HIGH)
+	toco.analogWrite(1,1024)
+	toco.digitalWrite(1,toco.HIGH)
 	time.sleep(1)

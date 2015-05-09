@@ -11,14 +11,11 @@ import serial
 import time
 import sys
 
-HIGH = 1
-LOW = 0
-
-class Toko:
+class Toco:
 	def __init__(self,port):
 		self.HIGH = 1
 		self.LOW = 0
-		self.serial = s = serial.Serial(
+		self.serial = serial.Serial(
 			port=port,
 			baudrate=115200)
 
@@ -69,14 +66,14 @@ class Toko:
 
 if __name__ == '__main__':
 
-	toko = Toko('/dev/tty.usbserial-AHXMUX35')
+	toco = Toco('/dev/tty.usbserial-AHXMUX35')
 
 	while True:
 
-		toko.analogWrite(1,0)
-		toko.digitalWrite(1,toko.LOW)
+		toco.analogWrite(1,0)
+		toco.digitalWrite(1,toco.LOW)
 		time.sleep(1)
 
-		toko.analogWrite(1,1024)
-		toko.digitalWrite(1,toko.HIGH)
+		toco.analogWrite(1,1024)
+		toco.digitalWrite(1,toco.HIGH)
 		time.sleep(1)
