@@ -16,6 +16,8 @@ LOW = 0
 
 class Toko:
 	def __init__(self,port):
+		self.HIGH = 1
+		self.LOW = 0
 		self.serial = s = serial.Serial(
 			port=port,
 			baudrate=115200)
@@ -23,24 +25,24 @@ class Toko:
 	def digitalWrite(self,pin,value):
 		cmd = ':788001'
 		if pin == 1:
-			if value == HIGH:
+			if value == self.HIGH:
 				cmd = cmd + '0101'+'FFFFFFFFFFFFFFFF'
-			if value == LOW:
+			if value == self.LOW:
 				cmd = cmd + '0001'+'FFFFFFFFFFFFFFFF'
 		if pin == 2:
-			if value == HIGH:
+			if value == self.HIGH:
 				cmd = cmd + '0202'+'FFFFFFFFFFFFFFFF'
-			if value == LOW:
+			if value == self.LOW:
 				cmd = cmd + '0002'+'FFFFFFFFFFFFFFFF'
 		if pin == 3:
-			if value == HIGH:
+			if value == self.HIGH:
 				cmd = cmd + '0404'+'FFFFFFFFFFFFFFFF'
-			if value == LOW:
+			if value == self.LOW:
 				cmd = cmd + '0004'+'FFFFFFFFFFFFFFFF'
 		if pin == 4:
-			if value == HIGH:
+			if value == self.HIGH:
 				cmd = cmd + '0808'+'FFFFFFFFFFFFFFFF'
-			if value == LOW:
+			if value == self.LOW:
 				cmd = cmd + '0008'+'FFFFFFFFFFFFFFFF'
 		cmd = cmd + 'XX\r\n'
 		self.serial.write(cmd)
@@ -72,9 +74,9 @@ if __name__ == '__main__':
 	while True:
 
 		toko.analogWrite(1,0)
-		toko.digitalWrite(1,LOW)
+		toko.digitalWrite(1,toko.LOW)
 		time.sleep(1)
 
 		toko.analogWrite(1,1024)
-		toko.digitalWrite(1,HIGH)
+		toko.digitalWrite(1,toko.HIGH)
 		time.sleep(1)
